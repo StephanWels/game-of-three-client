@@ -1,0 +1,5 @@
+<h2>Players</h2>
+
+<mat-list-item *ngFor="let player of players | async" class="player" role="listitem">
+    {{player.name}} ({{player.email}})
+</mat-list-item>

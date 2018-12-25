@@ -1,0 +1,29 @@
+<div *ngIf="gameUpdates | async as game">
+    <h2>Playing: {{game.name}}</h2>
+    <h3>Players</h3>
+    <mat-list>
+        <mat-list-item *ngFor="let player of game.players" role="listitem">
+            {{player.name}}
+        </mat-list-item>
+    </mat-list>
+    <h3>Game turns</h3>
+    <mat-list>
+        <mat-list-item *ngFor="let turn of game.gameTurns" role="listitem">
+            {{turn.player.name}} / {{turn.move}}
+        </mat-list-item>
+    </mat-list>
+    <h3>Current value: {{game.gameValue}}</h3>
+    <div *ngIf="!game.winner">
+        <div>
+            <span>What's your move?</span>
+        </div>
+        <button mat-button mat-raised-button (click)="takeTurn(-1)">-1</button>
+        <button mat-button mat-raised-button (click)="takeTurn(0)">0</button>
+        <button mat-button mat-raised-button (click)="takeTurn(1)">+1</button>
+    </div>
+    <div *ngIf="!!game.winner">
+        <h3>WINNER: {{game.winner.name}}</h3>
+    </div>
+</div>
+<mat-divider class="bottom-nav-divider"></mat-divider>
+<button mat-button mat-raised-button routerLink="/games">Back to game list</button>

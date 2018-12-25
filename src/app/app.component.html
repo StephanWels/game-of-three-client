@@ -1,0 +1,12 @@
+<div class="container">
+    <h1 routerLink="/games">GAME OF THREE</h1>
+    <div *ngIf="loggedInAs | async as name">
+        <span>logged in as: {{name}}</span>
+        <button (click)="logout()" mat-button>logout</button>
+    </div>
+
+    <mat-divider class="header-divider"></mat-divider>
+    <mat-divider class="header-divider"></mat-divider>
+    <mat-divider class="header-divider"></mat-divider>
+    <router-outlet></router-outlet>
+</div>

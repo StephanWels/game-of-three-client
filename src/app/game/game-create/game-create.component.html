@@ -1,0 +1,12 @@
+<h1>Create new game</h1>
+<form class="game-create-form" (ngSubmit)="createGame()" [formGroup]="gameCreateFormGroup">
+  <mat-form-field>
+    <input matInput placeholder="Game name*" formControlName="name">
+    <mat-error *ngIf="gameCreateFormGroup.controls['name'].invalid">Please provide a name.</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="number" matInput placeholder="Initial game value" formControlName="initialValue">
+    <mat-hint>If left blank, a random value between 10 and 60 will be generated.</mat-hint>
+  </mat-form-field>
+  <button mat-button mat-raised-button type="submit">CREATE GAME</button>
+</form>

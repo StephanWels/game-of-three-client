@@ -1,0 +1,27 @@
+<h2>Games</h2>
+
+<div *ngFor="let game of games | async">
+    <mat-card class="game-card">
+        <mat-card-header>
+            <mat-card-title>{{game.name}}</mat-card-title>
+            <mat-card-subtitle *ngIf="!game.winner">current value: {{game.gameValue}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="game.winner">WINNER: {{game.winner.name}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="game.players.length < 2">(waiting for more players to join)</mat-card-subtitle>
+
+        </mat-card-header>
+        <mat-card-content>
+            ACTIVE PLAYERS
+            <mat-list role="list">
+                <mat-list-item *ngFor="let player of game.players" class="player" role="listitem">
+                    {{player.name}}
+                </mat-list-item>
+            </mat-list>
+        </mat-card-content>
+        <mat-card-actions *ngIf="game.players.length < 2">
+            <button (click)="joinGame(game, false)" mat-button>JOIN</button>
+            <button (click)="joinGame(game, true)" mat-button>JOIN (AUTO-MOVES)</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<a routerLink="/new-game" mat-button mat-raised-button>CREATE NEW GAME</a>
